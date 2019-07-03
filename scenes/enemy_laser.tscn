@@ -1,15 +1,14 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/laser.tscn" type="PackedScene" id=1]
-[ext_resource path="res://sprites/laser_ship.png" type="Texture" id=2]
+[ext_resource path="res://sprites/laser_enemy.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3.02902, 6.10051 )
+extents = Vector2( 4.51658, 7.09138 )
 
-[node name="ship_laser" instance=ExtResource( 1 )]
-collision_layer = 4
-collision_mask = 2
-velocity = Vector2( 0, -350 )
+[node name="enemy_laser" instance=ExtResource( 1 )]
+collision_layer = 8
+velocity = Vector2( 0, 150 )
 
 [node name="sprite" parent="." index="0"]
 texture = ExtResource( 2 )
@@ -18,4 +17,4 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="visibility_notifier" parent="." index="2"]
-rect = Rect2( -3, -6, 6, 12 )
+rect = Rect2( -4.5, -7, 9, 14 )

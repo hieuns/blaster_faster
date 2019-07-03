@@ -10,3 +10,7 @@ func start(pos):
 
 func _on_visibility_notifier_screen_exited():
   queue_free()
+
+func _on_laser_area_entered(area):
+  area.get_hit(self.position)
+  queue_free()

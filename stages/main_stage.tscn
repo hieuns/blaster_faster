@@ -13,4 +13,7 @@ script = ExtResource( 1 )
 [node name="parallax_stars" parent="." instance=ExtResource( 3 )]
 
 [node name="ship" parent="." instance=ExtResource( 4 )]
+[connection signal="enemy_get_hit" from="enemy_spawner" to="." method="_on_enemy_spawner_enemy_get_hit"]
+[connection signal="enemy_shoot" from="enemy_spawner" to="." method="_on_enemy_spawner_enemy_shoot"]
+[connection signal="get_hit" from="ship" to="." method="_on_ship_get_hit"]
 [connection signal="shoot" from="ship" to="." method="_on_ship_shoot"]

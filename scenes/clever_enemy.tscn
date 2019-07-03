@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/clever_enemy.gd" type="Script" id=2]
+[ext_resource path="res://sprites/enemy_clever.png" type="Texture" id=3]
+
+[node name="clever_enemy" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+velocity = Vector2( 50, 50 )
+can_shoot = true
+armor = 6
+
+[node name="sprite" parent="." index="0"]
+texture = ExtResource( 3 )
+
+[node name="collision_shape" parent="." index="1"]
+polygon = PoolVector2Array( -1.95718, -12.9817, 1.97455, -12.9817, 8.96179, -12.0381, 11.0288, -9.94865, 11.0512, -8.03895, 9.99529, -7.00547, 9.99529, -5.97198, 13.9761, -1.91267, 14.9788, 0.030159, 15.9491, 3.03729, 16.0389, 13.9787, 13.972, 15.9783, 12.0173, 15.9783, 11.9724, 12.9902, 12.9733, 13.0033, 12.9733, 10.9351, 10.0627, 7.95756, 8.96232, 4.98125, 8.98427, 2.02626, 5.05254, 2.02626, 5.075, 3.03728, 2.9458, 4.04117, -2.94573, 4.07076, -5.0127, 2.94741, -5.03515, 1.95889, -8.89948, 1.98136, -8.89922, 4.79323, -10.0273, 7.92684, -12.9102, 10.9351, -13.011, 12.9003, -12, 12.9003, -12.0224, 16.0008, -13.9771, 16.0008, -16.0438, 14.006, -16.0216, 2.9699, -14.9881, 0.00424576, -13.9321, -2.04026, -10.09, -5.92369, -10.0273, -6.98911, -10.9674, -8.05453, -10.9674, -9.9347, -8.96188, -11.9402 )
+
+[node name="cannon" type="Position2D" parent="." index="2"]
+position = Vector2( 0, 4 )
+
+[node name="cannon_cooldown" type="Timer" parent="." index="3"]
+wait_time = 1.5
+autostart = true
+[connection signal="timeout" from="cannon_cooldown" to="." method="_on_cannon_cooldown_timeout"]

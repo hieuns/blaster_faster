@@ -1,9 +1,12 @@
 extends Area2D
 
 signal shoot(laser, flare)
+signal get_hit(flare)
 
 const laser_class = preload("res://scenes/ship_laser.tscn")
 const flare_class = preload("res://scenes/flare.tscn")
+
+var armor = 4 setget set_armor
 
 var screen_size = Vector2()
 var half_sprite_width = Vector2()
@@ -27,6 +30,16 @@ func shoot():
 
   emit_signal("shoot", left_laser, left_flare)
   emit_signal("shoot", right_laser, right_flare)
+
+func get_hit(pos):
+  var flare = _create_flare(pos)
+  emit_signal("get_hit", flare)
+  set_armor(armor - 1)
+
+func set_armor(new_value):
+  armor = new_value
+  if armor <= 0:
+    queue_free()
 
 func _create_laser(pos):
   var laser = laser_class.instance()

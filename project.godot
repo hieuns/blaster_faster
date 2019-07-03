@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="New Game Project"
+config/name="Blaster Faster"
 run/main_scene="res://stages/main_stage.tscn"
 config/icon="res://icon.png"
 
@@ -50,6 +50,13 @@ texture={
 "stream": false,
 "svg/scale": 1.0
 }
+
+[layer_names]
+
+2d_physics/layer_1="ship"
+2d_physics/layer_2="enemy"
+2d_physics/layer_3="ship_laser"
+2d_physics/layer_4="enemy_laser"
 
 [rendering]
 
