@@ -16,3 +16,14 @@ texture = ExtResource( 2 )
 
 [node name="collision_shape" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -2.80303, -16.0218, 2.7936, -15.9623, 11.0099, -3.10196, 11.0099, -8.28182, 12.8556, -8.16274, 15.0585, -5.95981, 15.9434, 2.49168, 15.8921, 13.8665, 3.98437, 16.0099, -3.87472, 16.0695, -15.9611, 13.6879, -15.9212, 1.88124, -14.8224, -5.9323, -12.8055, -8.22228, -10.9598, -8.16274, -10.9598, -2.86381 )
+
+[node name="left_cannon" type="Position2D" parent="."]
+position = Vector2( -12, -8 )
+
+[node name="right_cannon" type="Position2D" parent="."]
+position = Vector2( 12, -8 )
+
+[node name="cannon_cooldown" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+[connection signal="timeout" from="cannon_cooldown" to="." method="_on_cannon_cooldown_timeout"]
