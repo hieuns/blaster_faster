@@ -1,8 +1,10 @@
 extends Area2D
 
 signal get_hit(hit_pos)
+signal explode(explosion)
 
 const flare_class = preload("res://scenes/flare.tscn")
+const explosion_class = preload("res://scenes/explosion.tscn")
 
 export var velocity = Vector2()
 export var can_shoot = false
@@ -35,10 +37,17 @@ func get_hit(pos):
 
 func set_armor(new_value):
   armor = new_value
-  if armor <= 0:
+  if armor == 0:
+    var explosion = _create_explosion(self.position)
+    emit_signal("explode", explosion)
     queue_free()
 
 func _create_flare(pos):
   var flare = flare_class.instance()
-  flare.start(pos)
+  flare.init(pos)
   return flare
+
+func _create_explosion(pos):
+  var explosion = explosion_class.instance()
+  explosion.init(pos)
+  return explosion

@@ -2,9 +2,11 @@ extends Area2D
 
 signal shoot(laser, flare)
 signal get_hit(flare)
+signal explode(explosion)
 
 const laser_class = preload("res://scenes/ship_laser.tscn")
 const flare_class = preload("res://scenes/flare.tscn")
+const explosion_class = preload("res://scenes/explosion.tscn")
 
 var armor = 4 setget set_armor
 
@@ -38,7 +40,9 @@ func get_hit(pos):
 
 func set_armor(new_value):
   armor = new_value
-  if armor <= 0:
+  if armor == 0:
+    var explosion = _create_explosion(self.position)
+    emit_signal("explode", explosion)
     queue_free()
 
 func _create_laser(pos):
@@ -48,8 +52,13 @@ func _create_laser(pos):
 
 func _create_flare(pos):
   var flare = flare_class.instance()
-  flare.start(pos)
+  flare.init(pos)
   return flare
+
+func _create_explosion(pos):
+  var explosion = explosion_class.instance()
+  explosion.init(pos)
+  return explosion
 
 func _on_cannon_cooldown_timeout():
   shoot()
