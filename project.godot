@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Blaster Faster"
-run/main_scene="res://stages/main_stage.tscn"
+run/main_scene="res://stages/menu_stage.tscn"
 config/icon="res://icon.png"
 
 [display]

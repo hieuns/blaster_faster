@@ -21,7 +21,10 @@ func _on_enemy_spawner_enemy_get_hit(flare):
 func _on_ship_explode(explosion):
   add_child(explosion)
   $camera.shake(8, 0.13)
+  $hud/reload_button.show()
+  $hud/quit_button.show()
 
 func _on_enemy_spawner_enemy_explode(explosion):
   add_child(explosion)
   $camera.shake(8, 0.13)
+  $hud/score_container.score += 1

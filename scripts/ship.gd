@@ -2,6 +2,7 @@ extends Area2D
 
 signal shoot(laser, flare)
 signal get_hit(flare)
+signal armor_changed(new_armor)
 signal explode(explosion)
 
 const laser_class = preload("res://scenes/ship_laser.tscn")
@@ -40,6 +41,8 @@ func get_hit(pos):
 
 func set_armor(new_value):
   armor = new_value
+  emit_signal("armor_changed", armor)
+
   if armor == 0:
     var explosion = _create_explosion(self.position)
     emit_signal("explode", explosion)
