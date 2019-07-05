@@ -1,7 +1,8 @@
 extends Area2D
 
 signal shoot(laser, flare)
-signal get_hit(flare)
+signal hit_by_laser(flare)
+signal hit_by_enemy()
 signal armor_changed(new_armor)
 signal explode(explosion)
 
@@ -20,6 +21,8 @@ var half_sprite_width = Vector2()
 func _ready():
   screen_size = get_viewport_rect().size
   half_sprite_width = $sprite.texture.get_size().x / 2
+
+  add_to_group("ship")
 
 func _process(delta):
   var motion = (get_global_mouse_position().x - self.position.x) * 0.2
@@ -49,9 +52,13 @@ func shoot():
     emit_signal("shoot", second_left_laser, second_left_flare)
     emit_signal("shoot", second_right_laser, second_right_flare)
 
-func get_hit(pos):
+func hit_by_laser(pos):
   var flare = _create_flare(pos)
-  emit_signal("get_hit", flare)
+  emit_signal("hit_by_laser", flare)
+  set_armor(armor - 1)
+
+func hit_by_enemy():
+  emit_signal("hit_by_enemy")
   set_armor(armor - 1)
 
 func set_armor(new_value):
@@ -92,3 +99,13 @@ func _on_cannon_cooldown_timeout():
 
 func _on_double_shooting_timer_timeout():
   is_double_shooting = false
+
+func _on_area_entered(area):
+  if area.is_in_group("powerup_armor"):
+    set_armor(armor + 1)
+  elif area.is_in_group("powerup_laser"):
+    is_double_shooting = true
+  elif area.is_in_group("laser"):
+    hit_by_laser(area.position)
+  elif area.is_in_group("enemy"):
+    hit_by_enemy()

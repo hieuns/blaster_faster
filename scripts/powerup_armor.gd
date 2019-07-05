@@ -1,5 +1,7 @@
 extends "res://scripts/powerup.gd"
 
-func _on_powerup_armor_area_entered(area):
-  area.armor += 1
+func _ready():
+  add_to_group("powerup_armor")
+
+func _on_area_entered(area):
   queue_free()

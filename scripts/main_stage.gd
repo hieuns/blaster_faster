@@ -9,8 +9,12 @@ func _on_ship_shoot(laser, flare):
 func _on_enemy_spawner_enemy_shoot(laser):
   add_child(laser)
 
-func _on_ship_get_hit(flare):
+func _on_ship_hit_by_laser(flare):
   add_child(flare)
+  add_child(flash_class.instance())
+  $camera.shake(3, 0.13)
+
+func _on_ship_hit_by_enemy():
   add_child(flash_class.instance())
   $camera.shake(3, 0.13)
 

@@ -23,6 +23,8 @@ var half_sprite_height
 var half_sprite_width
 
 func _ready():
+  randomize()
+
   screen_size = get_viewport_rect().size
 
   var texture_size = $sprite.texture.get_size()
@@ -30,6 +32,8 @@ func _ready():
   half_sprite_height = texture_size.y / 2
 
   armor = MAX_ARMOR
+
+  add_to_group("enemy")
 
 func _process(delta):
   translate(velocity * delta)
@@ -77,3 +81,9 @@ func _drop_powerup(pos):
     var powerup_item = powerup_class.instance()
     powerup_item.start(pos)
     emit_signal("drop_powerup", powerup_item)
+
+func _on_area_entered(area):
+  if area.is_in_group("laser"):
+    get_hit(area.position)
+  elif area.is_in_group("ship"):
+    set_armor(0)

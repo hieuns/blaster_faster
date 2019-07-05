@@ -1,5 +1,7 @@
 extends "res://scripts/powerup.gd"
 
-func _on_powerup_laser_area_entered(area):
-  area.is_double_shooting = true
+func _ready():
+  add_to_group("powerup_laser")
+
+func _on_area_entered(area):
   queue_free()
