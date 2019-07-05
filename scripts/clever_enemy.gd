@@ -18,5 +18,7 @@ func shoot():
   laser.start($cannon.global_position)
   emit_signal("shoot", laser)
 
+  audio_player.play_sfx("enemy_laser")
+
 func _on_cannon_cooldown_timeout():
   shoot()

@@ -52,6 +52,8 @@ func shoot():
     emit_signal("shoot", second_left_laser, second_left_flare)
     emit_signal("shoot", second_right_laser, second_right_flare)
 
+  audio_player.play_sfx("ship_laser")
+
 func hit_by_laser(pos):
   var flare = _create_flare(pos)
   emit_signal("hit_by_laser", flare)
@@ -64,6 +66,9 @@ func hit_by_enemy():
 func set_armor(new_value):
   if new_value < 0 or new_value > MAX_ARMOR:
     return
+
+  if new_value < armor:
+    audio_player.play_sfx("ship_hit")
 
   armor = new_value
   emit_signal("armor_changed", armor)
@@ -103,8 +108,10 @@ func _on_double_shooting_timer_timeout():
 func _on_area_entered(area):
   if area.is_in_group("powerup_armor"):
     set_armor(armor + 1)
+    audio_player.play_sfx("powerup")
   elif area.is_in_group("powerup_laser"):
     is_double_shooting = true
+    audio_player.play_sfx("powerup")
   elif area.is_in_group("laser"):
     hit_by_laser(area.position)
   elif area.is_in_group("enemy"):

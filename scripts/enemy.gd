@@ -48,6 +48,7 @@ func get_hit(pos):
   var flare = _create_flare(pos)
   emit_signal("get_hit", flare)
   set_armor(armor - 1)
+  audio_player.play_sfx("enemy_hit")
 
 func set_armor(new_value):
   if new_value < 0 or new_value >= MAX_ARMOR:

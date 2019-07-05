@@ -7,6 +7,7 @@ func _ready():
   $smoke.emitting = true
   $flare.emitting = true
   $explosion_animations.play("fade_out")
+  audio_player.play_sfx("explosion")
 
 func init(pos):
   self.position = pos
