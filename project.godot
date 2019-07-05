@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 audio_player="*res://scenes/audio_player.tscn"
+game="*res://scripts/game.gd"
 
 [display]
 
