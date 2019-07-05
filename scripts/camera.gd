@@ -2,7 +2,6 @@ extends Camera2D
 
 var magnitude = 0
 var shaking_time_left = 0
-var is_shaking = false
 
 func _process(delta):
   if shaking_time_left > 0:

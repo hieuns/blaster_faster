@@ -28,3 +28,6 @@ func _on_enemy_spawner_enemy_explode(explosion):
   add_child(explosion)
   $camera.shake(8, 0.13)
   $hud/score_container.score += 1
+
+func _on_enemy_spawner_enemy_drop_powerup(powerup_item):
+  call_deferred("add_child", powerup_item)

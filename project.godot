@@ -57,6 +57,7 @@ texture={
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="ship_laser"
 2d_physics/layer_4="enemy_laser"
+2d_physics/layer_5="powerup"
 
 [rendering]
 

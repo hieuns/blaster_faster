@@ -6,9 +6,9 @@
 
 [node name="clever_enemy" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+MAX_ARMOR = 6
 velocity = Vector2( 50, 50 )
 can_shoot = true
-armor = 6
 
 [node name="sprite" parent="." index="0"]
 texture = ExtResource( 3 )

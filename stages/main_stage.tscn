@@ -19,7 +19,7 @@ font_path = "res://fonts/m5x7.ttf"
 [sub_resource type="DynamicFont" id=2]
 font_data = SubResource( 1 )
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=3]
 script/source = "extends TextureButton
 
 func _on_pressed():
@@ -29,7 +29,7 @@ func _on_pressed():
 [sub_resource type="DynamicFont" id=4]
 font_data = SubResource( 1 )
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=5]
 script/source = "extends TextureButton
 
 func _on_pressed():
@@ -86,7 +86,7 @@ margin_bottom = 150.0
 texture_normal = ExtResource( 10 )
 texture_pressed = ExtResource( 11 )
 texture_hover = ExtResource( 12 )
-script = SubResource( 5 )
+script = SubResource( 3 )
 
 [node name="label" type="Label" parent="hud/reload_button"]
 margin_left = 2.0
@@ -105,7 +105,7 @@ margin_bottom = 171.0
 texture_normal = ExtResource( 10 )
 texture_pressed = ExtResource( 11 )
 texture_hover = ExtResource( 12 )
-script = SubResource( 6 )
+script = SubResource( 5 )
 
 [node name="label" type="Label" parent="hud/quit_button"]
 margin_left = 2.0
@@ -114,6 +114,7 @@ margin_bottom = 16.0
 custom_fonts/font = SubResource( 4 )
 text = "QUIT"
 align = 1
+[connection signal="enemy_drop_powerup" from="enemy_spawner" to="." method="_on_enemy_spawner_enemy_drop_powerup"]
 [connection signal="enemy_explode" from="enemy_spawner" to="." method="_on_enemy_spawner_enemy_explode"]
 [connection signal="enemy_get_hit" from="enemy_spawner" to="." method="_on_enemy_spawner_enemy_get_hit"]
 [connection signal="enemy_shoot" from="enemy_spawner" to="." method="_on_enemy_spawner_enemy_shoot"]

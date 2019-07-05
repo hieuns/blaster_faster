@@ -5,20 +5,20 @@
 [ext_resource path="res://sprites/button_pressed.png" type="Texture" id=3]
 [ext_resource path="res://sprites/button_hover.png" type="Texture" id=4]
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=1]
 script/source = "extends TextureButton
 
 func _on_pressed():
   get_tree().change_scene(\"res://stages/main_stage.tscn\")
 "
 
-[sub_resource type="DynamicFontData" id=1]
+[sub_resource type="DynamicFontData" id=2]
 font_path = "res://fonts/m5x7.ttf"
 
-[sub_resource type="DynamicFont" id=4]
-font_data = SubResource( 1 )
+[sub_resource type="DynamicFont" id=3]
+font_data = SubResource( 2 )
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=4]
 script/source = "extends TextureButton
 
 func _on_pressed():
@@ -39,13 +39,13 @@ margin_bottom = 150.0
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
-script = SubResource( 3 )
+script = SubResource( 1 )
 
 [node name="label" type="Label" parent="hud/start_button"]
 margin_left = 2.0
 margin_right = 47.0
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "START"
 align = 1
 
@@ -57,13 +57,13 @@ margin_bottom = 171.0
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 texture_hover = ExtResource( 4 )
-script = SubResource( 5 )
+script = SubResource( 4 )
 
 [node name="label" type="Label" parent="hud/quit_button"]
 margin_left = 2.0
 margin_right = 47.0
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "QUIT"
 align = 1
 [connection signal="pressed" from="hud/start_button" to="hud/start_button" method="_on_pressed"]

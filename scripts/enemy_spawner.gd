@@ -3,6 +3,7 @@ extends Node
 signal enemy_shoot(laser)
 signal enemy_get_hit(flare)
 signal enemy_explode(explosion)
+signal enemy_drop_powerup(powerup_item)
 
 const enemy_classes = [
   preload("res://scenes/dumb_enemy.tscn"),
@@ -22,6 +23,7 @@ func _spawn():
 
   new_enemy.connect("get_hit", self, "_on_enemy_get_hit")
   new_enemy.connect("explode", self, "_on_enemy_explode")
+  new_enemy.connect("drop_powerup", self, "_on_enemy_drop_powerup")
 
   if new_enemy.can_shoot:
     new_enemy.connect("shoot", self, "_on_enemy_shoot")
@@ -44,6 +46,9 @@ func _on_enemy_get_hit(flare):
 
 func _on_enemy_explode(explosion):
   emit_signal("enemy_explode", explosion)
+
+func _on_enemy_drop_powerup(powerup_item):
+  emit_signal("enemy_drop_powerup", powerup_item)
 
 func _on_enemy_shoot(laser):
   emit_signal("enemy_shoot", laser)
